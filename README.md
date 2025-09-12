@@ -1,32 +1,6 @@
 <!-- # At the very begainning of the README.MD, I gonna erratum statement
 See more details in [Erratum_Statement.md](https://github.com/peihaoY/xSlice_Paper/Erratum_Statement.md) -->
 
-# Erratum Statement （Missing a Figure in xSlice Paper） [Near-Real-Time Resource Slicing for QoS Optimization in 5G]
-
-We would like to begin by acknowledging an oversight in our recent submission. Specifically, we inadvertently omitted a crucial figure from the version of the paper. We sincerely apologize for this error and appreciate your understanding.
-
-<!-- A detailed statement regarding the missing figure, along with any relevant clarifications, is provided in [Erratum_Statement.md](https://github.com/peihaoY/xSlice_Paper/blob/main/Erratum_Statement.md). We kindly ask that you refer to this for additional context and clarification. -->
-
-## Description of the Issue
-We discovered an error in our submitted paper titled "[Near-Real-Time Resource Slicing for QoS Optimization in 5G]," where Figure.7 was unintentionally omitted during the final manuscript preparation. Because of missing the figure, the paper includes a placeholder ("??"). We deeply regret this oversight and sincerely apologize for any confusion caused.
-
-In our paper, an error was identified in **Section V: xSlice Design**, subsection **D: Penalty Definition and Policy Updates**, on **pages 7-8**. Specifically, when discussing the following statement:
-
-```bash
-“We measure the regret value of xSlice both with and without this penalty mechanism. Fig. 7(??) presents our experimental results. It can be seen that, without the penalty mechanism, the regret is distributed over a large range. In comparison, the penalty mechanism can significantly reduce regret, thus improving the quality of service of all sessions.”
-```
-
-## Corrective Action
-To address this issue, we have uploaded the missing figure to this repository for reference. You can find it below:
-
-<img src="fig/with&without_Penalty.png" alt="Figure 7: Performance comparison of \pname w/ and w/o using the proposed penalty mechanism." width="500">
-
-### Fig.7 Performance comparison of xSlice w/ and w/o using the proposed penalty mechanism.
-
-Alternatively, you can download the figure directly from the following link: [https://github.com/peihaoY/xSlice_Paper/tree/main/fig/with&without_Penalty.pdf].
-
-We are currently working to update the paper (if permitted by the journal editors and reviewers) and ensure such errors do not occur in the future.
-
 # xSlice: Near-Real-Time Resource Slicing for QoS Optimization in 5G
 xSlice is an online learning algorithm designed for the Near-Real-Time (Near-RT) RAN Intelligent Controller (RIC) in 5G O-RANs. Its primary goal is to dynamically adjust Medium Access Control (MAC)-layer resource allocation in response to changing network conditions such as wireless channel fluctuations, user mobility, traffic variations, and demand shifts.
 
@@ -339,3 +313,4 @@ Coming soon...
 ## Getting help
 
 If you encounter a bug or have any questions regarding the paper, the code or the setup process, please feel free to contact us: phyan@msu.edu
+
