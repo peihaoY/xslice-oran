@@ -307,16 +307,21 @@ Triggered internally at ../torch/csrc/utils/tensor_new.cpp:2.
 ## Citation
 If you use our code in your research, please cite our paper:
 ```bash
-@article{yan2025near,
-  title={Near-Real-Time Resource Slicing for QoS Optimization in 5G O-RAN using Deep Reinforcement Learning},
-  author={Yan, Peihao and Lu, Jie and Zeng, Huacheng and Hou, Y Thomas},
-  journal={arXiv preprint arXiv:2509.14343},
-  year={2025}
-}
+@ARTICLE{11244863,
+  author={Yan, Peihao and Lu, Jie and Zeng, Huacheng and Thomas Hou, Y.},
+  journal={IEEE Transactions on Networking}, 
+  title={Near-Real-Time Resource Slicing for QoS Optimization in 5G O-RAN Using Deep Reinforcement Learning}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-16},
+  keywords={Open RAN;Quality of service;Resource management;5G mobile communication;Optimization;Dynamic scheduling;Throughput;Network slicing;Heuristic algorithms;Cellular networks;5G/6G;O-RAN;cellular networks;graph neural network (GNN);network slicing;deep reinforcement learning (DRL);QoS optimization},
+  doi={10.1109/TON.2025.3628209}}
 ```
 
 ## Getting help
 
 If you encounter a bug or have any questions regarding the paper, the code or the setup process, please feel free to contact us: phyan@msu.edu
+
 
 
