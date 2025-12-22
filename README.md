@@ -158,7 +158,7 @@ In both the RAN and RIC systems, there are numerous code files involved. Below, 
     │   ├── c                       # our xApps based on C code
         │   ├── ctrl            
 │   ├── mac_ctrl.c                  # test code for mac layer control
-            │   ├── xapp_peihao.c   # Source code for xSlice
+            │   ├── xapp_xslice.c   # Source code for xSlice
     │   ├── python3                 # external python code examples for xApps
 ├── trandata                        # data storage
 │   ├── KPM_UE.txt             
@@ -322,6 +322,7 @@ If you use our code in your research, please cite our paper:
 ## Getting help
 
 If you encounter a bug or have any questions regarding the paper, the code or the setup process, please feel free to contact us: phyan@msu.edu
+
 
 
 
