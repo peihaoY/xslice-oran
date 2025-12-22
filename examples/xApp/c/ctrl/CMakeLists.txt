@@ -10,12 +10,12 @@ add_executable(xapp_mac_ctrl
  						-lsctp
  						-ldl
  						)
-add_executable(xapp_peihao
-  xapp_peihao.c
+add_executable(xapp_xslice
+  xapp_xslice.c
   ../../../../src/util/alg_ds/alg/defer.c
   )
 
- target_link_libraries(xapp_peihao
+ target_link_libraries(xapp_xslice
  						PUBLIC
  						e42_xapp
  						-pthread
