@@ -8,8 +8,8 @@ import copy
 
 class slice_env(gym.Env):
     def __int__(self):
-        self.action_space = spaces.Discrete(2)  # 两个连续动作 Box
-        self.observation_space = spaces.Box(low=0, high=1, shape=(17,), dtype=np.float32)  # 17个浮点数的向量
+        self.action_space = spaces.Discrete(2) 
+        self.observation_space = spaces.Box(low=0, high=1, shape=(17,), dtype=np.float32)  
 
         self.state = []
         self.MAC = []
@@ -21,7 +21,7 @@ class slice_env(gym.Env):
 
     def get_UEmac_layer_info(self, ue_id):
         self.mac_state = []
-        # 连接到数据库
+        
         conn = sqlite3.connect('../trandata/xapp_db_')
         cursor = conn.cursor()
         # 8 numbers for each UE
@@ -63,7 +63,6 @@ class slice_env(gym.Env):
             cursor.execute(delete_query)
             conn.commit()    
         '''
-        # 实际运行的时候读取之后清空 it does not work
         # cursor.execute("SELECT MAX(tstamp) FROM MAC_UE")
         # latest_id = cursor.fetchone()[0]
         # cursor.execute('DELETE FROM MAC_UE WHERE tstamp != ?', (latest_id,))
@@ -76,7 +75,7 @@ class slice_env(gym.Env):
         
         while 1:
             with open('../trandata/KPM_UE.txt', 'r') as file:
-                lines = file.readlines()[-user_num:]  # 获取文件的最后两行
+                lines = file.readlines()[-user_num:] 
             for line in lines:
                 data = [float(x) for x in line.split()]
                 if int(data[0]) == ue_id:
@@ -91,11 +90,11 @@ class slice_env(gym.Env):
                     self.kpm_state = data_ueid
                 break
 
-    def get_state(self, ue_id, user_num):   #在这里处理数据
+    def get_state(self, ue_id, user_num):   
         
         self.get_UEmac_layer_info(ue_id)
         self.get_UEkpm_info(ue_id, user_num)
-        self.state = list(self.mac_state[0]) + self.kpm_state  #问题是，每一个的最大最小值都不同
+        self.state = list(self.mac_state[0]) + self.kpm_state 
 
         self.MAC = list(self.mac_state[0])
         #dl_curr_tbs, dl_sched_rb, pusch_snr, pucch_snr, wb_cqi, dl_mcs1, ul_mcs1, phr, dl_bler, ul_bler
@@ -116,7 +115,6 @@ class slice_env(gym.Env):
         self.MAC[9] = self.MAC[9]/0.5
 
         self.KPM = self.kpm_state
-        # 这里的数据针对的是100ms的kpm
         # DRB_pdcpSduVolumeDL, DRB_pdcpSduVolumeUL   0-80000
         self.KPM[1] = self.KPM[1]/20000
         self.KPM[2] = self.KPM[2]/20000
@@ -129,7 +127,7 @@ class slice_env(gym.Env):
         '''
         self.KPM[3] = self.KPM[3]/1000
         #DRB_UEThpDL, DRB_UEThpUL, kbps
-        self.KPM[4] = self.KPM[4]/1000   #倒数第四个值是downlink
+        self.KPM[4] = self.KPM[4]/1000  
         self.KPM[5] = self.KPM[5]/1000
         #RRU_PrbTotUL, RRU_PrbTotUL  0-70000
         self.KPM[6] = self.KPM[6]/1000
@@ -209,15 +207,11 @@ class slice_env(gym.Env):
         self.state = np.random.rand(3)
         return np.array(self.state)
 
-    def caculate_reward(self, action, user_num):  #only for iperf/iperf3  #以最大化最小吞吐量的用户作为标准
+    def caculate_reward(self, action, user_num):  #only for iperf/iperf3  
         # reward = 0 if action == 0 else 0.0
         # print(self.RRU_PrbTotUL_UE1, self.RRU_PrbTotDL_UE1, self.RRU_PrbTotUL_UE2, self.RRU_PrbTotDL_UE2)
         # throuput = self.kpm_state[4] + self.kpm_state[5] # 70M...70000  UL600 1000
         # delay = self.kpm_state[3]  # 20ms 20000
-        # 主要关注下行流量
-        # max - min fairness：
-        # 迭代过程：通常，使用迭代算法，其中以增量方式分配资源以提高最小吞吐量，直到无法进一步改进。
-        # 优先级调度：在资源分配决策中，吞吐量最低的用户将获得更高的优先级。
         #min_throughput = min(self.RRU_ThpDL_UE1, self.RRU_ThpDL_UE2)
         # reward = min_throughput - self.prev_min_throughput
         avg_throughput = 0
@@ -248,15 +242,14 @@ class slice_env(gym.Env):
 
         return avg_throughput, avg_delay, avg_BLER, avg_prbs, reward, done
     
-    def caculate_regret(self, action, user_num):  #only for iperf/iperf3  #以最大化最小吞吐量的用户作为标准
+    def caculate_regret(self, action, user_num):  #only for iperf/iperf3  
         # reward = 0 if action == 0 else 0.0
         # print(self.RRU_PrbTotUL_UE1, self.RRU_PrbTotDL_UE1, self.RRU_PrbTotUL_UE2, self.RRU_PrbTotDL_UE2)
         # throuput = self.kpm_state[4] + self.kpm_state[5] # 70M...70000  UL600 1000
         # delay = self.kpm_state[3]  # 20ms 20000
-        # 主要关注下行流量
+        
         # max - min fairness：
-        # 迭代过程：通常，使用迭代算法，其中以增量方式分配资源以提高最小吞吐量，直到无法进一步改进。
-        # 优先级调度：在资源分配决策中，吞吐量最低的用户将获得更高的优先级。
+        
         #min_throughput = min(self.RRU_ThpDL_UE1, self.RRU_ThpDL_UE2)
         # reward = min_throughput - self.prev_min_throughput
         sum_regret_throughput = 0

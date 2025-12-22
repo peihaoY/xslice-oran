@@ -55,7 +55,7 @@ class DynamicGNN(nn.Module):
             edge_indices.append(edge_index)
     
             batch += [current_batch] * num_nodes
-            current_batch += 1 #num_nodes   这里如果用每次累加num_node会导致输出的embedding的数量累加
+            current_batch += 1 #num_nodes  
 
         x = torch.tensor(node_features, dtype=torch.float)
         edge_index = torch.cat(edge_indices, dim=1)

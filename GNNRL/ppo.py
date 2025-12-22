@@ -46,19 +46,7 @@ def load_model(model, optimizer, save_path):
     else:
         print(f"No model found at {save_path}, starting from scratch")
         return 0
-''' #the model is "w"
-def save_data(data, filename):
-    try:
-        #print(data)
-        with open(filename, 'w', newline='') as file:
-            writer = csv.writer(file)
-        #writer.writerow(['time', 'value'])
-        #writer.writerows(data)
-            writer.writerow(data)
-        print(f"数据已保存到 {filename}")
-    except Exception as e:
-        print(f"保存数据时发生异常: {e}")
-'''
+    
 # the model is append
 def append_reward_to_csv(file_path, rewards, throughput, latancy, bler, prbs, each_time, totel_times):
     file_exists = os.path.isfile(file_path)
@@ -69,7 +57,7 @@ def append_reward_to_csv(file_path, rewards, throughput, latancy, bler, prbs, ea
         #writer.writerow(['end', 'end', 'end', 'end', 'end', 'end'])
         for reward, throughput, latancy, bler, prbs, each_time, totel_times in zip(rewards, throughput, latancy, bler, prbs, each_time, totel_times):
             writer.writerow([reward, throughput, latancy, bler, prbs, each_time, totel_times])
-    print(f"数据已保存到 {file_path}")
+    print(f"data saved to  {file_path}")
 
 def append_score_to_csv(file_path, scores, optimization_steps, num_state, times):
     file_exists = os.path.isfile(file_path)
@@ -80,10 +68,10 @@ def append_score_to_csv(file_path, scores, optimization_steps, num_state, times)
         writer.writerow(['end', 'end', 'end', 'end'])       
         for scores, optimization_steps, num_state, times in zip(scores, optimization_steps, num_state, times):
             writer.writerow([scores, optimization_steps, num_state, times])
-    print(f"数据已保存到 {file_path}")
+    print(f"data saved to  {file_path}")
 
 def signal_handler(sig, frame):
-    print("程序中断，正在保存数据...")
+    print("system shut down, data saved to ...")
     append_reward_to_csv('../trandata/rewards.csv', rewards, throughput, latancy, bler, prbs, each_time,  totel_times)
     #append_score_to_csv('../trandata/scores.csv', scores, optimization_steps, num_state, times)
     #save_data(rewards, '../trandata/rewards.csv')
