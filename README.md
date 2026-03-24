@@ -319,6 +319,11 @@ If you use our code in your research, please cite our paper:
   doi={10.1109/TON.2025.3628209}}
 ```
 
+## Version Note: 
+1. xslice_gnb, The version of OAI used when developing this codebase corresponds to the develop branch around May 24, 2024, specifically commit 850f26fc5c620c9dbf5ec3c5f43677763212a341.
+2. You will need to copy the FlexRIC source (the same one used for xslice_xApp) into that flexric folder, and then run the build again.
+3. May need to change xslice version to FlexRIC v2.0.0 environment or the version of xdiff.
+
 ## Getting help
 
 If you encounter a bug or have any questions regarding the paper, the code or the setup process, please feel free to contact us: phyan@msu.edu
